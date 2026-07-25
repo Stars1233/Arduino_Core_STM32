@@ -2260,8 +2260,7 @@ target_link_options(BLACKPILL_F401CE_hid INTERFACE
   -mcpu=${BLACKPILL_F401CE_hid_MCU}
 )
 
-
-# BLACKPILL_F411CE
+# BLACKPILL_F411CE_25M
 # -----------------------------------------------------------------------------
 
 set(BLACKPILL_F411CE_VARIANT_PATH "${CMAKE_CURRENT_LIST_DIR}/../variants/STM32F4xx/F411C(C-E)(U-Y)")
@@ -2341,7 +2340,7 @@ target_compile_options(BLACKPILL_F411CE_xusb_HSFS INTERFACE
   "SHELL:-DUSE_USB_HS -DUSE_USB_HS_IN_FS"
 )
 
-# BLACKPILL_F411CE_hid
+# BLACKPILL_F411CE_25M_hid
 # -----------------------------------------------------------------------------
 
 set(BLACKPILL_F411CE_hid_VARIANT_PATH "${CMAKE_CURRENT_LIST_DIR}/../variants/STM32F4xx/F411C(C-E)(U-Y)")
@@ -2383,6 +2382,127 @@ target_link_options(BLACKPILL_F411CE_hid INTERFACE
   -mcpu=${BLACKPILL_F411CE_hid_MCU}
 )
 
+# BLACKPILL_F411CE_8M
+# -----------------------------------------------------------------------------
+
+set(BLACKPILL_F411CE_8M_VARIANT_PATH "${CMAKE_CURRENT_LIST_DIR}/../variants/STM32F4xx/F411C(C-E)(U-Y)")
+set(BLACKPILL_F411CE_8M_MAXSIZE 524288)
+set(BLACKPILL_F411CE_8M_MAXDATASIZE 131072)
+set(BLACKPILL_F411CE_8M_MCU cortex-m4)
+set(BLACKPILL_F411CE_8M_FPCONF "-")
+add_library(BLACKPILL_F411CE_8M INTERFACE)
+target_compile_options(BLACKPILL_F411CE_8M INTERFACE
+  "SHELL:-DUSE_HAL_DRIVER -DUSE_FULL_LL_DRIVER"
+  "SHELL:-DSTM32F411xE"
+  "SHELL:-DCUSTOM_PERIPHERAL_PINS"
+  "SHELL:-mfpu=fpv4-sp-d16 -mfloat-abi=hard"
+  -mcpu=${BLACKPILL_F411CE_8M_MCU}
+)
+target_compile_definitions(BLACKPILL_F411CE_8M INTERFACE
+  "STM32F4xx"
+	"ARDUINO_BLACKPILL_F411CE_8M"
+	"BOARD_NAME=\"BLACKPILL_F411CE_8M\""
+	"BOARD_ID=BLACKPILL_F411CE_8M"
+	"VARIANT_H=\"variant_BLACKPILL_F411CE.h\""
+)
+target_include_directories(BLACKPILL_F411CE_8M INTERFACE
+  ${CMAKE_CURRENT_LIST_DIR}/../system/STM32F4xx
+  ${CMAKE_CURRENT_LIST_DIR}/../system/Drivers/STM32F4xx_HAL_Driver/Inc
+  ${CMAKE_CURRENT_LIST_DIR}/../system/Drivers/STM32F4xx_HAL_Driver/Src
+  ${CMAKE_CURRENT_LIST_DIR}/../system/Drivers/CMSIS/Device/ST/STM32F4xx/Include/
+  ${CMAKE_CURRENT_LIST_DIR}/../system/Drivers/CMSIS/Device/ST/STM32F4xx/Source/
+  ${CMAKE_CURRENT_LIST_DIR}/../system/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/
+  ${BLACKPILL_F411CE_8M_VARIANT_PATH}
+)
+
+target_link_options(BLACKPILL_F411CE_8M INTERFACE
+  "LINKER:--default-script=${BLACKPILL_F411CE_8M_VARIANT_PATH}/ldscript.ld"
+  "LINKER:--defsym=LD_FLASH_OFFSET=0x0"
+  "LINKER:--defsym=LD_MAX_SIZE=524288"
+  "LINKER:--defsym=LD_MAX_DATA_SIZE=131072"
+  "SHELL:-mfpu=fpv4-sp-d16 -mfloat-abi=hard"
+  -mcpu=${BLACKPILL_F411CE_8M_MCU}
+)
+
+add_library(BLACKPILL_F411CE_8M_serial_disabled INTERFACE)
+target_compile_options(BLACKPILL_F411CE_8M_serial_disabled INTERFACE
+)
+add_library(BLACKPILL_F411CE_8M_serial_generic INTERFACE)
+target_compile_options(BLACKPILL_F411CE_8M_serial_generic INTERFACE
+  "SHELL:-DHAL_UART_MODULE_ENABLED"
+)
+add_library(BLACKPILL_F411CE_8M_serial_none INTERFACE)
+target_compile_options(BLACKPILL_F411CE_8M_serial_none INTERFACE
+  "SHELL:-DHAL_UART_MODULE_ENABLED -DHWSERIAL_NONE"
+)
+add_library(BLACKPILL_F411CE_8M_usb_CDC INTERFACE)
+target_compile_options(BLACKPILL_F411CE_8M_usb_CDC INTERFACE
+  "SHELL:-DUSBCON -DUSBD_VID=0x0483 -DUSBD_PID=0x5740 -DHAL_PCD_MODULE_ENABLED -DUSBD_USE_CDC -DDISABLE_GENERIC_SERIALUSB"
+)
+add_library(BLACKPILL_F411CE_8M_usb_CDCgen INTERFACE)
+target_compile_options(BLACKPILL_F411CE_8M_usb_CDCgen INTERFACE
+  "SHELL:-DUSBCON -DUSBD_VID=0x0483 -DUSBD_PID=0x5740 -DHAL_PCD_MODULE_ENABLED -DUSBD_USE_CDC"
+)
+add_library(BLACKPILL_F411CE_8M_usb_HID INTERFACE)
+target_compile_options(BLACKPILL_F411CE_8M_usb_HID INTERFACE
+  "SHELL:-DUSBCON -DUSBD_VID=0x0483 -DUSBD_PID=0x5740 -DHAL_PCD_MODULE_ENABLED -DUSBD_USE_HID_COMPOSITE"
+)
+add_library(BLACKPILL_F411CE_8M_usb_none INTERFACE)
+target_compile_options(BLACKPILL_F411CE_8M_usb_none INTERFACE
+)
+add_library(BLACKPILL_F411CE_8M_xusb_FS INTERFACE)
+target_compile_options(BLACKPILL_F411CE_8M_xusb_FS INTERFACE
+)
+add_library(BLACKPILL_F411CE_8M_xusb_HS INTERFACE)
+target_compile_options(BLACKPILL_F411CE_8M_xusb_HS INTERFACE
+  "SHELL:-DUSE_USB_HS"
+)
+add_library(BLACKPILL_F411CE_8M_xusb_HSFS INTERFACE)
+target_compile_options(BLACKPILL_F411CE_8M_xusb_HSFS INTERFACE
+  "SHELL:-DUSE_USB_HS -DUSE_USB_HS_IN_FS"
+)
+
+# BLACKPILL_F411CE_8M_hid
+# -----------------------------------------------------------------------------
+
+set(BLACKPILL_F411CE_8M_hid_VARIANT_PATH "${CMAKE_CURRENT_LIST_DIR}/../variants/STM32F4xx/F411C(C-E)(U-Y)")
+set(BLACKPILL_F411CE_8M_hid_MAXSIZE 524288)
+set(BLACKPILL_F411CE_8M_hid_MAXDATASIZE 131072)
+set(BLACKPILL_F411CE_8M_hid_MCU cortex-m4)
+set(BLACKPILL_F411CE_8M_hid_FPCONF "-")
+add_library(BLACKPILL_F411CE_8M_hid INTERFACE)
+target_compile_options(BLACKPILL_F411CE_8M_hid INTERFACE
+  "SHELL:-DUSE_HAL_DRIVER -DUSE_FULL_LL_DRIVER"
+  "SHELL:-DSTM32F411xE -DHAL_UART_MODULE_ENABLED -DBL_HID"
+  "SHELL:-DCUSTOM_PERIPHERAL_PINS"
+  "SHELL:-mfpu=fpv4-sp-d16 -mfloat-abi=hard"
+  -mcpu=${BLACKPILL_F411CE_8M_hid_MCU}
+)
+target_compile_definitions(BLACKPILL_F411CE_8M_hid INTERFACE
+  "STM32F4xx"
+	"ARDUINO_BLACKPILL_F411CE_8M"
+	"BOARD_NAME=\"BLACKPILL_F411CE_8M\""
+	"BOARD_ID=BLACKPILL_F411CE_8M"
+	"VARIANT_H=\"variant_BLACKPILL_F411CE.h\""
+)
+target_include_directories(BLACKPILL_F411CE_8M_hid INTERFACE
+  ${CMAKE_CURRENT_LIST_DIR}/../system/STM32F4xx
+  ${CMAKE_CURRENT_LIST_DIR}/../system/Drivers/STM32F4xx_HAL_Driver/Inc
+  ${CMAKE_CURRENT_LIST_DIR}/../system/Drivers/STM32F4xx_HAL_Driver/Src
+  ${CMAKE_CURRENT_LIST_DIR}/../system/Drivers/CMSIS/Device/ST/STM32F4xx/Include/
+  ${CMAKE_CURRENT_LIST_DIR}/../system/Drivers/CMSIS/Device/ST/STM32F4xx/Source/
+  ${CMAKE_CURRENT_LIST_DIR}/../system/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/
+  ${BLACKPILL_F411CE_8M_hid_VARIANT_PATH}
+)
+
+target_link_options(BLACKPILL_F411CE_8M_hid INTERFACE
+  "LINKER:--default-script=${BLACKPILL_F411CE_8M_hid_VARIANT_PATH}/ldscript.ld"
+  "LINKER:--defsym=LD_FLASH_OFFSET=0x4000"
+  "LINKER:--defsym=LD_MAX_SIZE=524288"
+  "LINKER:--defsym=LD_MAX_DATA_SIZE=131072"
+  "SHELL:-mfpu=fpv4-sp-d16 -mfloat-abi=hard"
+  -mcpu=${BLACKPILL_F411CE_8M_hid_MCU}
+)
 
 # BLUE_F407VE_MINI
 # -----------------------------------------------------------------------------
@@ -4524,7 +4644,6 @@ target_link_options(DATABOARD_hid INTERFACE
   "LINKER:--defsym=LD_MAX_DATA_SIZE=20480"
   -mcpu=${DATABOARD_hid_MCU}
 )
-
 
 # DEMO_F030F4
 # -----------------------------------------------------------------------------

@@ -5139,8 +5139,8 @@ GenF4.menu.pnum.BLACKPILL_F401CE.build.variant_h=variant_BLACKPILL_F401Cx.h
 GenF4.menu.pnum.BLACKPILL_F401CE.build.peripheral_pins=-DCUSTOM_PERIPHERAL_PINS
 GenF4.menu.pnum.BLACKPILL_F401CE.debug.svd_file={runtime.tools.STM32_SVD.path}/svd/STM32F4xx/STM32F401.svd
 
-# BlackPill F411CE
-GenF4.menu.pnum.BLACKPILL_F411CE=BlackPill F411CE
+# BlackPill F411CE 25M
+GenF4.menu.pnum.BLACKPILL_F411CE=BlackPill F411CE (HSE 25Mhz)
 GenF4.menu.pnum.BLACKPILL_F411CE.upload.maximum_size=524288
 GenF4.menu.pnum.BLACKPILL_F411CE.upload.maximum_data_size=131072
 GenF4.menu.pnum.BLACKPILL_F411CE.build.board=BLACKPILL_F411CE
@@ -5149,6 +5149,17 @@ GenF4.menu.pnum.BLACKPILL_F411CE.build.variant=STM32F4xx/F411C(C-E)(U-Y)
 GenF4.menu.pnum.BLACKPILL_F411CE.build.variant_h=variant_{build.board}.h
 GenF4.menu.pnum.BLACKPILL_F411CE.build.peripheral_pins=-DCUSTOM_PERIPHERAL_PINS
 GenF4.menu.pnum.BLACKPILL_F411CE.debug.svd_file={runtime.tools.STM32_SVD.path}/svd/STM32F4xx/STM32F411.svd
+
+# BlackPill F411CE 8M
+GenF4.menu.pnum.BLACKPILL_F411CE_8M=BlackPill F411CE (HSE 8Mhz)
+GenF4.menu.pnum.BLACKPILL_F411CE_8M.upload.maximum_size=524288
+GenF4.menu.pnum.BLACKPILL_F411CE_8M.upload.maximum_data_size=131072
+GenF4.menu.pnum.BLACKPILL_F411CE_8M.build.board=BLACKPILL_F411CE_8M
+GenF4.menu.pnum.BLACKPILL_F411CE_8M.build.product_line=STM32F411xE
+GenF4.menu.pnum.BLACKPILL_F411CE_8M.build.variant=STM32F4xx/F411C(C-E)(U-Y)
+GenF4.menu.pnum.BLACKPILL_F411CE_8M.build.variant_h=variant_BLACKPILL_F411CE.h
+GenF4.menu.pnum.BLACKPILL_F411CE_8M.build.peripheral_pins=-DCUSTOM_PERIPHERAL_PINS
+GenF4.menu.pnum.BLACKPILL_F411CE_8M.debug.svd_file={runtime.tools.STM32_SVD.path}/svd/STM32F4xx/STM32F411.svd
 
 # Blue F407VE mini
 GenF4.menu.pnum.BLUE_F407VE_MINI=Blue F407VE mini

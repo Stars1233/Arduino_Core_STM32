@@ -142,10 +142,15 @@
   #define PIN_SERIAL_TX         PA9
 #endif
 
-#ifndef HSE_VALUE
-  #define HSE_VALUE             25000000U
+#if defined(ARDUINO_BLACKPILL_F411CE_8M)
+  #ifndef HSE_VALUE
+    #define HSE_VALUE           8000000U
+  #endif
+#else
+  #ifndef HSE_VALUE
+    #define HSE_VALUE           25000000U
+  #endif
 #endif
-
 /*----------------------------------------------------------------------------
  *        Arduino objects - C++ only
  *----------------------------------------------------------------------------*/
