@@ -692,9 +692,14 @@ void uart_deinit(serial_t *obj)
 #endif
 #if defined(USART6_BASE)
       case UART6_INDEX:
+#if defined(USE_HALV2_DRIVER)
+        HAL_RCC_USART6_Reset();
+        HAL_RCC_USART6_DisableClock();
+#else
         __HAL_RCC_USART6_FORCE_RESET();
         __HAL_RCC_USART6_RELEASE_RESET();
         __HAL_RCC_USART6_CLK_DISABLE();
+#endif
         break;
 #endif
 #if defined(LPUART1_BASE)
@@ -725,9 +730,14 @@ void uart_deinit(serial_t *obj)
 #endif
 #if defined(UART7_BASE)
       case UART7_INDEX:
+#if defined(USE_HALV2_DRIVER)
+        HAL_RCC_UART7_Reset();
+        HAL_RCC_UART7_DisableClock();
+#else
         __HAL_RCC_UART7_FORCE_RESET();
         __HAL_RCC_UART7_RELEASE_RESET();
         __HAL_RCC_UART7_CLK_DISABLE();
+#endif
         break;
 #elif defined(USART7_BASE)
       case UART7_INDEX:
@@ -1460,7 +1470,11 @@ void UART5_IRQHandler(void)
 #if defined(USART6_BASE) && !defined(STM32F0xx) && !defined(STM32G0xx)
 void USART6_IRQHandler(void)
 {
+#if defined(USE_HALV2_DRIVER)
+  HAL_CORTEX_NVIC_ClearPendingIRQ(USART6_IRQn);
+#else
   HAL_NVIC_ClearPendingIRQ(USART6_IRQn);
+#endif
   HAL_UART_IRQHandler(uart_handlers[UART6_INDEX]);
 }
 #endif
@@ -1490,7 +1504,11 @@ void LPUART1_IRQHandler(void)
 #if defined(UART7_BASE)
 void UART7_IRQHandler(void)
 {
+#if defined(USE_HALV2_DRIVER)
+  HAL_CORTEX_NVIC_ClearPendingIRQ(UART7_IRQn);
+#else
   HAL_NVIC_ClearPendingIRQ(UART7_IRQn);
+#endif
   HAL_UART_IRQHandler(uart_handlers[UART7_INDEX]);
 }
 #endif
