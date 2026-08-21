@@ -58,6 +58,7 @@ User can add a STM32 based board following this [wiki](https://github.com/stm32d
  - [Eval boards](#eval-boards)
  - [STM32MP1 series coprocessor boards](#stm32mp1-series-coprocessor-boards)
  - [Generic STM32C0 boards](#generic-stm32c0-boards)
+ - [Generic STM32C5 boards](#generic-stm32c5-boards)
  - [Generic STM32F0 boards](#generic-stm32f0-boards)
  - [Generic STM32F1 boards](#generic-stm32f1-boards)
  - [Generic STM32F2 boards](#generic-stm32f2-boards)
@@ -240,6 +241,13 @@ User can add a STM32 based board following this [wiki](https://github.com/stm32d
 | :green_heart: | STM32C092CB<br>STM32C092CC| Generic Board | *2.12.0* | STM32C092CBT since 2.11.0 |
 | :green_heart: | STM32C092RBT<br>STM32C092RCT | Generic Board | *2.11.0* |  |
 | :green_heart: | STM32C092RCI | Generic Board | *2.11.0* |  |
+
+### Generic STM32C5 boards
+
+| Status | Device(s) | Name | Release | Notes |
+| :----: | :-------: | ---- | :-----: | :---- |
+| :green_heart: | STM32C552RC<br>STM32C552RE | Generic Board | *3.0.0* |  |
+| :green_heart: | STM32C562RE | Generic Board | *3.0.0* |  |
 
 ### Generic STM32F0 boards
 
